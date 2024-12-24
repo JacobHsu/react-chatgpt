@@ -77,4 +77,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
     "react-dom": "^18.3.0",
 ```
 
-`yarn add web-vitals`
+`yarn add web-vitals`  
+
+[Material Icons](https://mui.com/material-ui/material-icons/)
+`yarn add @mui/icons-material @mui/material @emotion/styled @emotion/react`  

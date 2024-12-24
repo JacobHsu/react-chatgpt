@@ -1,13 +1,140 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap");
+
+* {
+  font-family: "Open Sans", sans-serif;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.app {
+  background-color: #343541;
+
+  display: flex;
+}
+
+.side-bar {
+  color: #dddde4;
+  background-color: #202123;
+  width: 244px;
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+button {
+  border: solid 1px rgba(255, 255, 255, 0.2);
+  background-color: transparent;
+  border-radius: 0.5rem;
+  padding: 10px;
+  margin: 10px;
+
+  color: #ececf1;
+  font-size: 0.9rem;
+
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
+button:hover {
+  background-color: #2b2c2f;
+}
+
+.plus {
+  font-size: 1.2rem;
+}
+
+.history {
+  padding: 5px;
+  margin: 5px;
+
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.history li {
+  list-style-type: none;
+  cursor: pointer;
+}
+
+.message {
+  display: flex;
+  align-items: center;
+  padding-left: 8px;
+  margin: 0;
+}
+
+.record {
+  padding-left: 10px;
+}
+
+.main {
+  background-color: #fff;
+  width: 100vw;
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  justify-content: flex-end;
+}
+
+h1 {
+  color: #000;
+  font-size: 33px;
+  font-weight: 600;
+  padding: 200px 0;
+
+  flex-grow: 2;
+}
+
+#output {
+  color: #474853;
+}
+
+.bottom-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  margin-bottom: 10px;
+}
+
+.input-container {
+  width: 80%;
+  max-width: 800px;
+
+  position: relative;
+}
+
+#submit {
+  position: absolute;
+  right: -15px;
+  bottom: 0.3rem;
+
+  cursor: pointer;
+}
+
+input {
+  border: none;
+  background-color: #fff;
+  width: 100%;
+  font-size: 1rem;
+  padding: 12px 15px;
+  border-radius: 0.75rem;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+input:focus {
+  outline: none;
 }
