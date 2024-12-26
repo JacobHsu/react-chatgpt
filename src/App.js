@@ -2,6 +2,30 @@ import ChatBubbleOutlineRoundedIcon from "@mui/icons-material/ChatBubbleOutlineR
 import SendRoundedIcon from "@mui/icons-material/SendRounded";
 
 const App = () => {
+
+    const getData = async () => {
+      const options = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          message: "Hi!",
+        }),
+      };
+
+      try {
+        const response = await fetch(
+          "http://localhost:3000/completions",
+          options
+        );
+        const data = await response.json();
+        console.log(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
   return (
     <div className="app">
       <section className="side-bar">
@@ -24,9 +48,9 @@ const App = () => {
               name="text"
               type="text"
               placeholder="Send a message"
-              autocomplete="off"
+              autoComplete="off"
             />
-            <div id="submit">
+            <div id="submit" onClick={getData}>
               <SendRoundedIcon style={{ color: "#DDDDE4" }} />
             </div>
           </div>
