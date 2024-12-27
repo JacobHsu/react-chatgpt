@@ -1,30 +1,36 @@
+import { useState } from "react";
 import ChatBubbleOutlineRoundedIcon from "@mui/icons-material/ChatBubbleOutlineRounded";
 import SendRoundedIcon from "@mui/icons-material/SendRounded";
 
 const App = () => {
+  const [value, setValue] = useState("");
+  const [reply, setReply] = useState(null);
 
-    const getData = async () => {
-      const options = {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          message: "Hi!",
-        }),
-      };
-
-      try {
-        const response = await fetch(
-          "http://localhost:3000/completions",
-          options
-        );
-        const data = await response.json();
-        console.log(data);
-      } catch (error) {
-        console.log(error);
-      }
+  const getData = async () => {
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        message: value,
+      }),
     };
+
+    try {
+      const response = await fetch(
+        "https://node-express-vercel-gpt.vercel.app/completions", // http://localhost:3000/completions
+        options
+      );
+      const data = await response.json();
+      setReply(data.choices[0].message);
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  console.log(JSON.stringify(reply, null, 2));
 
   return (
     <div className="app">
@@ -49,6 +55,8 @@ const App = () => {
               type="text"
               placeholder="Send a message"
               autoComplete="off"
+              value={value}
+              onChange={(e) => setValue(e.target.value)}
             />
             <div id="submit" onClick={getData}>
               <SendRoundedIcon style={{ color: "#DDDDE4" }} />
