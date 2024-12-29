@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ChatBubbleOutlineRoundedIcon from "@mui/icons-material/ChatBubbleOutlineRounded";
 import SendRoundedIcon from "@mui/icons-material/SendRounded";
 
 const App = () => {
   const [value, setValue] = useState("");
   const [reply, setReply] = useState(null);
+  const [recordTitle, setrecordTitle] = useState(null);
+  const [record, setRecords] = useState([]);
 
   const getData = async () => {
     const options = {
@@ -30,7 +32,29 @@ const App = () => {
     }
   };
 
-  console.log(JSON.stringify(reply, null, 2));
+  console.log(record, JSON.stringify(reply, null, 2));
+
+  useEffect(() => {
+    // console.log(recordTitle, value, reply);
+    if (!recordTitle && reply) {
+      setrecordTitle(value);
+    }
+    if (recordTitle && reply) {
+      setRecords((prevRecord) => [
+        ...prevRecord,
+        {
+          title: recordTitle,
+          role: "user",
+          content: value,
+        },
+        {
+          title: recordTitle,
+          role: reply.role,
+          content: reply.content,
+        },
+      ]);
+    }
+  }, [reply, recordTitle]);
 
   return (
     <div className="app">
