@@ -54,7 +54,7 @@ const App = () => {
         },
       ]);
     }
-  }, [reply, recordTitle]);
+  }, [reply, recordTitle, value]);
 
   const currentRecord = records.filter(
     (record) => record.title === recordTitle
