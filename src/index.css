@@ -11,8 +11,8 @@ body {
 
 .app {
   background-color: #343541;
-
   display: flex;
+  height: 100vh;
 }
 
 .side-bar {
@@ -84,7 +84,10 @@ button:hover {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  justify-content: flex-end;
+  /* justify-content: flex-end; */
+
+  overflow: scroll;
+  scroll-padding-top: 35px;
 }
 
 h1 {
@@ -97,24 +100,68 @@ h1 {
 }
 
 #output {
+  width: 100%;
+  padding: 0;
+  margin: 0;
   color: #474853;
+  max-height: 500px;
 }
 
+#output .container {
+  width: 100%;
+  border-bottom: 1px solid #eeeeef;
+  display: flex;
+  justify-content: center;
+}
+
+#output li {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin: auto 0;
+  padding: 35px;
+}
+
+#output li p {
+  color: #374151;
+  font-size: 14px;
+  text-align: left;
+  margin: 0;
+}
+
+#output .role {
+  margin-right: 20px;
+  width: 2rem;
+  height: 2rem;
+  background-size: cover;
+  border-radius: 0.2rem;
+}
+
+.container .user {
+  background-image: url(assets/message.png);
+}
+
+.container .assistant {
+  background-image: url(assets/chatgpt.jpeg);
+}
+
+.assistant-msg {
+  background-color: #f7f7f8;
+}
 .bottom-section {
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
-  margin-bottom: 10px;
 }
 
 .input-container {
   width: 80%;
-  max-width: 800px;
+  max-width: 560px;
 
-  position: relative;
+  position: fixed;
+  bottom: 25px;
 }
 
 #submit {
@@ -137,4 +184,16 @@ input {
 
 input:focus {
   outline: none;
+}
+
+.title {
+  width: 100%;
+  margin: 0;
+  padding: 25px 0;
+  border-bottom: 1px solid #eeeeef;
+}
+
+.bottom-space {
+  width: 100%;
+  height: 120px;
 }

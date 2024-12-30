@@ -6,7 +6,7 @@ const App = () => {
   const [value, setValue] = useState("");
   const [reply, setReply] = useState(null);
   const [recordTitle, setrecordTitle] = useState(null);
-  const [record, setRecords] = useState([]);
+  const [records, setRecords] = useState([]);
 
   const getData = async () => {
     const options = {
@@ -32,7 +32,7 @@ const App = () => {
     }
   };
 
-  console.log(record, JSON.stringify(reply, null, 2));
+  console.log(records, JSON.stringify(reply, null, 2));
 
   useEffect(() => {
     // console.log(recordTitle, value, reply);
@@ -56,6 +56,10 @@ const App = () => {
     }
   }, [reply, recordTitle]);
 
+  const currentRecord = records.filter(
+    (record) => record.title === recordTitle
+  );
+
   return (
     <div className="app">
       <section className="side-bar">
@@ -71,7 +75,22 @@ const App = () => {
       </section>
       <section className="main">
         <h1>Hello ChatGPT</h1>
-        <p id="output"></p>
+        <ul id="output">
+          {currentRecord?.map((message, index) => (
+            <div
+              key={index}
+              className={`container ${
+                message.role === "assistant" ? "assistant-msg" : ""
+              }`}
+            >
+              <li>
+                <p className={`role ${message.role}`}></p>
+                <p>{message.content}</p>
+              </li>
+            </div>
+          ))}
+          <div className="bottom-space"></div>
+        </ul>
         <div className="bottom-section">
           <div className="input-container">
             <input
