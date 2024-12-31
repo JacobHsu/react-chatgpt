@@ -3,19 +3,19 @@ import ChatBubbleOutlineRoundedIcon from "@mui/icons-material/ChatBubbleOutlineR
 import SendRoundedIcon from "@mui/icons-material/SendRounded";
 
 const App = () => {
-  const [value, setValue] = useState("");
+  const [inputValue, setInputValue] = useState("");
   const [reply, setReply] = useState(null);
-  const [recordTitle, setrecordTitle] = useState(null);
+  const [recordTitle, setRecordTitle] = useState(null);
   const [records, setRecords] = useState([]);
 
-  const getData = async () => {
+  const fetchReply = async () => {
     const options = {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        message: value,
+        message: inputValue,
       }),
     };
 
@@ -34,10 +34,21 @@ const App = () => {
 
   console.log(records, JSON.stringify(reply, null, 2));
 
+  const addNewChat = () => {
+    setInputValue("");
+    setReply(null);
+    setRecordTitle(null);
+  };
+
+  const handleClick = (uniqueTitle) => {
+    setRecordTitle(uniqueTitle);
+    setInputValue("");
+    setReply(null);
+  };
+
   useEffect(() => {
-    // console.log(recordTitle, value, reply);
     if (!recordTitle && reply) {
-      setrecordTitle(value);
+      setRecordTitle(inputValue);
     }
     if (recordTitle && reply) {
       setRecords((prevRecord) => [
@@ -45,7 +56,7 @@ const App = () => {
         {
           title: recordTitle,
           role: "user",
-          content: value,
+          content: inputValue,
         },
         {
           title: recordTitle,
@@ -54,27 +65,43 @@ const App = () => {
         },
       ]);
     }
-  }, [reply, recordTitle, value]);
+  }, [reply, recordTitle]);
 
   const currentRecord = records.filter(
     (record) => record.title === recordTitle
   );
 
+  const uniqueTitles = Array.from(
+    new Set(records.map((record) => record.title))
+  );
+
+  console.log(uniqueTitles);
+
   return (
     <div className="app">
       <section className="side-bar">
-        <button>
+        <button onClick={addNewChat}>
           <span className="plus">+</span> New chat
         </button>
         <ul className="history">
-          <li className="message">
-            <ChatBubbleOutlineRoundedIcon />
-            <p className="record">Record</p>
-          </li>
+          {uniqueTitles?.map((uniqueTitle, index) => (
+            <li
+              className="message"
+              key={index}
+              onClick={() => handleClick(uniqueTitle)}
+            >
+              <ChatBubbleOutlineRoundedIcon />
+              <p className="record">{uniqueTitle}</p>
+            </li>
+          ))}
         </ul>
       </section>
       <section className="main">
-        <h1>Hello ChatGPT</h1>
+        {recordTitle ? (
+          <p className="title">{recordTitle}</p>
+        ) : (
+          <h1>Hello ChatGPT</h1>
+        )}
         <ul id="output">
           {currentRecord?.map((message, index) => (
             <div
@@ -98,10 +125,10 @@ const App = () => {
               type="text"
               placeholder="Send a message"
               autoComplete="off"
-              value={value}
-              onChange={(e) => setValue(e.target.value)}
+              value={inputValue}
+              onChange={(e) => setInputValue(e.target.value)}
             />
-            <div id="submit" onClick={getData}>
+            <div id="submit" onClick={fetchReply}>
               <SendRoundedIcon style={{ color: "#DDDDE4" }} />
             </div>
           </div>
