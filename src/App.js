@@ -4,6 +4,7 @@ import SendRoundedIcon from "@mui/icons-material/SendRounded";
 
 const App = () => {
   const [inputValue, setInputValue] = useState("");
+  const [submittedValue, setSubmittedValue] = useState(""); 
   const [reply, setReply] = useState(null);
   const [recordTitle, setRecordTitle] = useState(null);
   const [records, setRecords] = useState([]);
@@ -26,7 +27,7 @@ const App = () => {
       );
       const data = await response.json();
       setReply(data.choices[0].message);
-      console.log(data);
+      setSubmittedValue(inputValue);
     } catch (error) {
       console.log(error);
     }
@@ -48,7 +49,7 @@ const App = () => {
 
   useEffect(() => {
     if (!recordTitle && reply) {
-      setRecordTitle(inputValue);
+      setRecordTitle(submittedValue);
     }
     if (recordTitle && reply) {
       setRecords((prevRecord) => [
@@ -56,7 +57,7 @@ const App = () => {
         {
           title: recordTitle,
           role: "user",
-          content: inputValue,
+          content: submittedValue,
         },
         {
           title: recordTitle,
@@ -65,7 +66,7 @@ const App = () => {
         },
       ]);
     }
-  }, [reply, recordTitle]);
+  }, [reply, recordTitle, submittedValue]);
 
   const currentRecord = records.filter(
     (record) => record.title === recordTitle
