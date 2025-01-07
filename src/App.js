@@ -128,9 +128,14 @@ const App = () => {
               autoComplete="off"
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  fetchReply();
+                }
+              }}
             />
             <div id="submit" onClick={fetchReply}>
-              <SendRoundedIcon style={{ color: "#DDDDE4" }} />
+              <SendRoundedIcon className="send-icon" />
             </div>
           </div>
         </div>
