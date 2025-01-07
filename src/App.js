@@ -30,6 +30,11 @@ const App = () => {
       setSubmittedValue(inputValue);
     } catch (error) {
       console.log(error);
+      setReply({
+        role: "assistant",
+        content: "這是功能示範用，您的額度已用完",
+        refusal: null,
+      });
     }
   };
 
