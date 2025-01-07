@@ -2,6 +2,8 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+> backend: [node-express-vercel](https://github.com/JacobHsu/node-express-vercel)
+
 ## Available Scripts
 
 In the project directory, you can run:
