@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import ReactMarkdown from "react-markdown";
 import ChatBubbleOutlineRoundedIcon from "@mui/icons-material/ChatBubbleOutlineRounded";
 import SendRoundedIcon from "@mui/icons-material/SendRounded";
 
@@ -118,7 +119,9 @@ const App = () => {
             >
               <li>
                 <p className={`role ${message.role}`}></p>
-                <p>{message.content}</p>
+                <p>
+                  <ReactMarkdown>{message.content}</ReactMarkdown>
+                </p>
               </li>
             </div>
           ))}
