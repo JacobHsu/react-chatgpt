@@ -77,6 +77,11 @@ button:hover {
   padding-left: 10px;
 }
 
+nav {
+  border-top: solid 1px rgba(255, 255, 255, 0.2);
+  padding: 0 30px;
+}
+
 .main {
   background-color: #fff;
   width: 100vw;

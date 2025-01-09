@@ -102,6 +102,9 @@ const App = () => {
             </li>
           ))}
         </ul>
+        <nav>
+          <p>此版本僅支援簡單問答</p>
+        </nav>
       </section>
       <section className="main">
         {recordTitle ? (
