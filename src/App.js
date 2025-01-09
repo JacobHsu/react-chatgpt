@@ -30,16 +30,17 @@ const App = () => {
       setReply(data.choices[0].message);
       setSubmittedValue(inputValue);
     } catch (error) {
-      console.log(error);
+      setSubmittedValue(inputValue);
       setReply({
         role: "assistant",
         content: "這是功能示範用，您的額度已用完",
         refusal: null,
       });
+      console.log(error);
     }
   };
 
-  console.log(records, JSON.stringify(reply, null, 2));
+  // console.log(records, JSON.stringify(reply, null, 2));
 
   const addNewChat = () => {
     setInputValue("");
