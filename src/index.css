@@ -138,6 +138,7 @@ h1 {
 
 #output .role {
   margin-right: 20px;
+  min-width: 2rem;
   width: 2rem;
   height: 2rem;
   background-size: cover;
@@ -149,7 +150,7 @@ h1 {
 }
 
 .container .assistant {
-  background-image: url(assets/chatgpt.jpeg);
+  background-image: url(assets/chatgpt.png);
 }
 
 .assistant-msg {
